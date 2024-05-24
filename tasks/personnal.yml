@@ -1,0 +1,23 @@
+- name: Cloning notes
+  ansible.builtin.git:
+    repo: "git@github.com:adelplace/notes.git"
+    dest: "{{ lookup('env', 'HOME') }}/.notes"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+  tags:
+    - install
+    - personnal
+
+- name: Cloning obsidian
+  ansible.builtin.git:
+    repo: "git@github.com:adelplace/obsidian.git"
+    dest: "{{ lookup('env', 'HOME') }}/Documents/obsidian"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+  tags:
+    - install
+    - personnal

@@ -1,0 +1,7 @@
+- name: Git Submodule Update
+  git:
+    repo: "git@github.com:adelplace/ansible.git"
+    dest: "{{ lookup('env', 'HOME') }}/ansible"
+    recursive: yes
+    update: yes
+    version: master

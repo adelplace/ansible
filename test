@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+docker build -t ansible .
+docker run --rm -it ansible /bin/bash

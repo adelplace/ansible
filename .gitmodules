@@ -1,0 +1,3 @@
+[submodule "tasks/ansible-adeo"]
+	path = tasks/ansible-adeo
+	url = git@github.com:adelplace/ansible-adeo.git

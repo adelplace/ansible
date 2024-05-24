@@ -1,0 +1,21 @@
+- name: Install apps
+  become: true
+  apt:
+    name:
+      [
+        "fonts-firacode",
+        "curl",
+        "tmux",
+        "fzf",
+        "bat",
+        "flatpak",
+        "direnv",
+        "stow",
+        "build-essential",
+        "ripgrep",
+        "gimp",
+      ]
+  tags:
+    - install
+    - neovim
+    - core

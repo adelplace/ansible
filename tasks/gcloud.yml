@@ -1,0 +1,81 @@
+- name: Download gcloud
+  ansible.builtin.get_url:
+    url: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-469.0.0-linux-x86_64.tar.gz
+    dest: /tmp/gcloud.tar.gz
+    force_basic_auth: yes
+  tags:
+    - install
+    - gcloud
+
+- name: Extract gcloud
+  become: true
+  ansible.builtin.unarchive:
+    src: /tmp/gcloud.tar.gz
+    dest: /opt
+    owner: adelplace
+    group: adelplace
+  tags:
+    - install
+    - gcloud
+
+- name: Install gcloud
+  shell: /opt/google-cloud-sdk/install.sh --quiet
+  tags:
+    - install
+    - gcloud
+
+- name: Download kubectl
+  shell: curl -o /tmp/kubectl -OL https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+  tags:
+    - install
+    - gcloud
+
+- name: Install Kubectl
+  become: true
+  copy:
+    src: /tmp/kubectl
+    dest: /usr/bin/kubectl
+    mode: 0755
+  tags:
+    - install
+    - gcloud
+
+- name: Cloning kubectx
+  become: true
+  ansible.builtin.git:
+    repo: "https://github.com/ahmetb/kubectx"
+    dest: "/opt/kubectx"
+    recursive: no
+    update: yes
+    accept_hostkey: yes
+    version: master
+  tags:
+    - install
+    - gcloud
+
+- name: Create a symbolic link for kubens
+  become: true
+  ansible.builtin.file:
+    src: /opt/kubectx/kubens
+    dest: /usr/local/bin/kubens
+    state: link
+    mode: 0755
+  tags:
+    - install
+    - gcloud
+
+- name: Create a symbolic link for kubectx
+  become: true
+  ansible.builtin.file:
+    src: /opt/kubectx/kubectx
+    dest: /usr/local/bin/kubectx
+    state: link
+    mode: 0755
+  tags:
+    - install
+    - gcloud
+
+- name: Install k9s
+  become: true
+  apt:
+    deb: https://github.com/derailed/k9s/releases/latest/download/k9s_linux_amd64.deb
