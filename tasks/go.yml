@@ -1,0 +1,10 @@
+- name: Download go
+  ansible.builtin.get_url:
+    url: https://go.dev/dl/go1.22.1.linux-amd64.tar.gz
+    dest: /tmp/go.tar.gz
+
+- name: Extract go
+  become: true
+  ansible.builtin.unarchive:
+    src: /tmp/go.tar.gz
+    dest: /opt
