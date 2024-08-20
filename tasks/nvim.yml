@@ -1,6 +1,6 @@
 - name: Download nvim
   ansible.builtin.get_url:
-    url: https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
+    url: https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz
     dest: /tmp/nvim.tar.gz
     force_basic_auth: yes
 
