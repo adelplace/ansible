@@ -22,6 +22,7 @@
     - core
 
 - name: Remove neovim default install
+  become: true
   ansible.builtin.apt:
     name: [neovim, fzf]
     state: absent
