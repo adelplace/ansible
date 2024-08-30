@@ -17,6 +17,7 @@
     - import_tasks: tasks/apps.yml
     - import_tasks: tasks/zsh.yml
     - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/personnal.yml
     - import_tasks: tasks/nvim.yml
     - import_tasks: tasks/docker.yml

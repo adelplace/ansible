@@ -5,4 +5,4 @@ sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt install ansible
 git clone https://github.com/adelplace/ansible.git
 cd ansible
-run-playbook
+./run-playbook
