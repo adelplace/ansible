@@ -2,10 +2,14 @@
   ansible.builtin.get_url:
     url: https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz
     dest: /tmp/nvim.tar.gz
-    force_basic_auth: yes
+    force_basic_auth: true
+  tags:
+    - ubuntu
 
 - name: Extract nvim
   become: true
   ansible.builtin.unarchive:
     src: /tmp/nvim.tar.gz
     dest: /opt
+  tags:
+    - ubuntu

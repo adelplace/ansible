@@ -1,4 +1,4 @@
-- name: Install apps
+- name: Install apps with ubuntu
   become: true
   apt:
     name:
@@ -16,13 +16,35 @@
         "gimp",
         "fd-find",
       ]
+    state: present
   tags:
-    - install
-    - neovim
-    - core
+    - ubuntu
 
 - name: Remove neovim default install
   become: true
   ansible.builtin.apt:
     name: [neovim, fzf]
     state: absent
+  tags:
+    - ubuntu
+
+- name: Install apps with pacman
+  become: true
+  pacman:
+    name:
+      [
+        "ttf-fira-code",
+        "curl",
+        "tmux",
+        "fzf",
+        "bat",
+        "direnv",
+        "stow",
+        "ripgrep",
+        "gimp",
+        "fd",
+        "nvim",
+      ]
+    state: present
+  tags:
+    - arch

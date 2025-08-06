@@ -3,30 +3,24 @@
   apt:
     name: ["nodejs", "npm"]
   tags:
-    - install
-    - node
+    - ubuntu
 
 - name: Install N
   become: true
   npm:
     name: n
-    global: yes
+    global: true
   tags:
-    - install
-    - node
+    - ubuntu
 
-- name: Install correct version of Node
+- name: Install correct version of Node for ubuntu
   become: true
   shell: n 20
   tags:
-    - install
-    - node
+    - ubuntu
 
 - name: Install Typescript
   become: true
   npm:
     name: typescript
-    global: yes
-  tags:
-    - install
-    - node
+    global: true

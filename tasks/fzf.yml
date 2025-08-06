@@ -2,16 +2,22 @@
   ansible.builtin.git:
     repo: "https://github.com/junegunn/fzf.git"
     dest: "{{ lookup('env', 'HOME') }}/.fzf"
-    recursive: no
-    update: no
-    accept_hostkey: yes
+    recursive: false
+    update: false
+    accept_hostkey: true
     version: master
   tags:
-    - install
-    - fzf
+    - ubuntu
 
 - name: Install fzf
-  shell: ~/.fzf/install
+  ansible.builtin.shell: ~/.fzf/install
   tags:
-    - install
-    - fzf
+    - ubuntu
+
+- name: Install fzf with pacman
+  become: true
+  pacman:
+    name: fzf
+    state: present
+  tags:
+    - arch
